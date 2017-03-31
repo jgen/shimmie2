@@ -938,7 +938,7 @@ function format_text(/*string*/ $string) {
  */
 function warehouse_path(/*string*/ $base, /*string*/ $hash, /*bool*/ $create=true) {
 	if (!ctype_digit($hash)) {
-		throw new InvalidArgumentException("Invalid hash");
+		throw new InvalidArgumentException("Invalid hash: ". $hash);
 	}
 	$ab = substr($hash, 0, 2);
 	$cd = substr($hash, 2, 2);

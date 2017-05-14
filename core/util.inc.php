@@ -100,16 +100,16 @@ function bool_escape($input) {
 	 http://php.net/manual/en/filter.filters.validate.php
 	*/
 	if (is_bool($input)) {
-		return $input;
+		return (boolean)$input;
 	} else if (is_numeric($input)) {
-		return ($input === 1);
+		return (boolean)($input === 1);
 	} else {
 		$value = filter_var($input, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
 		if (!is_null($value)) {
-			return $value;
+			return (boolean)$value;
 		} else {
 			$input = strtolower( trim($input) );
-			return (
+			return (boolean)(
 				$input === "y" ||
 				$input === "yes" ||
 				$input === "t" ||

@@ -296,19 +296,19 @@ class OuroborosPost extends _SafeOuroborosImage
             $this->rating = $post['rating'];
         }
         if (array_key_exists('source', $post)) {
-            $this->file_url = filter_var(
+            $this->file_url = (string)filter_var(
                 urldecode($post['source']),
                 FILTER_SANITIZE_URL
             );
         }
         if (array_key_exists('sourceurl', $post)) {
-            $this->source = filter_var(
+            $this->source = (string)filter_var(
                 urldecode($post['sourceurl']),
                 FILTER_SANITIZE_URL
             );
         }
         if (array_key_exists('description', $post)) {
-            $this->description = filter_var(
+            $this->description = (string)filter_var(
                 $post['description'],
                 FILTER_SANITIZE_STRING
             );
@@ -332,7 +332,7 @@ class OuroborosPost extends _SafeOuroborosImage
             $this->is_note_locked = $post['is_note_locked'];
         }
         if (array_key_exists('parent_id', $post)) {
-            $this->parent_id = filter_var(
+            $this->parent_id = (int)filter_var(
                 $post['parent_id'],
                 FILTER_SANITIZE_NUMBER_INT
             );

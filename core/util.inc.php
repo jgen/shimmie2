@@ -1228,7 +1228,7 @@ function get_request_id() {
  * @param mixed $to_remove
  * @return array
  */
-function array_remove($array, $to_remove) {
+function array_remove(array $array, $to_remove) {
 	$array = array_unique($array);
 	$a2 = array();
 	foreach($array as $existing) {
@@ -1248,8 +1248,8 @@ function array_remove($array, $to_remove) {
  * @param mixed $element
  * @return array
  */
-function array_add($array, $element) {
-	// Could we just use array_push() ?
+function array_add(array $array, $element) {
+	// TODO: Could we just use array_push() ?
 	//  http://www.php.net/manual/en/function.array-push.php
 	$array[] = $element;
 	$array = array_unique($array);
@@ -1262,7 +1262,7 @@ function array_add($array, $element) {
  * @param array $array
  * @return array
  */
-function array_iunique($array) {
+function array_iunique(array $array) {
 	$ok = array();
 	foreach($array as $element) {
 		$found = false;
@@ -1504,7 +1504,7 @@ function _set_event_listeners() {
  * @param array $event_listeners
  * @param string $path
  */
-function _dump_event_listeners($event_listeners, $path) {
+function _dump_event_listeners(array $event_listeners, $path) {
 	$p = "<"."?php\n";
 
 	foreach(get_declared_classes() as $class) {

@@ -618,7 +618,7 @@ class Image {
 	 * @param string[] $tags
 	 * @throws Exception
 	 */
-	public function set_tags($tags) {
+	public function set_tags(array $tags) {
 		assert('is_array($tags) && count($tags) > 0', var_export($tags, true));
 		global $database;
 
@@ -682,7 +682,7 @@ class Image {
 	 * @param string[] $metatags
 	 * @param int $image_id
 	 */
-	public function parse_metatags($metatags, $image_id) {
+	public function parse_metatags(array $metatags, $image_id) {
 		foreach($metatags as $tag) {
 			$ttpe = new TagTermParseEvent($tag, $image_id, TRUE);
 			send_event($ttpe);
@@ -1085,7 +1085,7 @@ class Tag {
 	 * @param string[] $tags
 	 * @return string
 	 */
-	public static function implode($tags) {
+	public static function implode(array $tags) {
 		assert('is_array($tags)');
 
 		sort($tags);

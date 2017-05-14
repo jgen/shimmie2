@@ -417,7 +417,7 @@ class OuroborosAPI extends Extension
                 if ($this->match('create')) {
                     // Create
                     if ($user->can("create_image")) {
-                        $md5 = !empty($_REQUEST['md5']) ? filter_var($_REQUEST['md5'], FILTER_SANITIZE_STRING) : null;
+                        $md5 = !empty($_REQUEST['md5']) ? (string)filter_var($_REQUEST['md5'], FILTER_SANITIZE_STRING) : null;
                         $this->postCreate(new OuroborosPost($_REQUEST['post']), $md5);
                     } else {
                         $this->sendResponse(403, 'You cannot create new posts');
@@ -428,7 +428,7 @@ class OuroborosAPI extends Extension
                     //@todo add post update
                 } elseif ($this->match('show')) {
                     // Show
-                    $id = !empty($_REQUEST['id']) ? filter_var($_REQUEST['id'], FILTER_SANITIZE_NUMBER_INT) : null;
+                    $id = !empty($_REQUEST['id']) ? (int)filter_var($_REQUEST['id'], FILTER_SANITIZE_NUMBER_INT) : null;
                     $this->postShow($id);
                 } elseif ($this->match('index') || $this->match('list')) {
                     // List
@@ -438,7 +438,7 @@ class OuroborosAPI extends Extension
                     $p = !empty($_REQUEST['page']) ? intval(
                         filter_var($_REQUEST['page'], FILTER_SANITIZE_NUMBER_INT)
                     ) : 1;
-                    $tags = !empty($_REQUEST['tags']) ? filter_var($_REQUEST['tags'], FILTER_SANITIZE_STRING) : array();
+                    $tags = !empty($_REQUEST['tags']) ? (string)filter_var($_REQUEST['tags'], FILTER_SANITIZE_STRING) : '';
                     if (!empty($tags)) {
                         $tags = Tag::explode($tags);
                     }
@@ -462,8 +462,8 @@ class OuroborosAPI extends Extension
                     $after_id = !empty($_REQUEST['after_id']) ? intval(
                         filter_var($_REQUEST['after_id'], FILTER_SANITIZE_NUMBER_INT)
                     ) : null;
-                    $name = !empty($_REQUEST['name']) ? filter_var($_REQUEST['name'], FILTER_SANITIZE_STRING) : '';
-                    $name_pattern = !empty($_REQUEST['name_pattern']) ? filter_var(
+                    $name = !empty($_REQUEST['name']) ? (string)filter_var($_REQUEST['name'], FILTER_SANITIZE_STRING) : '';
+                    $name_pattern = !empty($_REQUEST['name_pattern']) ? (string)filter_var(
                         $_REQUEST['name_pattern'],
                         FILTER_SANITIZE_STRING
                     ) : '';

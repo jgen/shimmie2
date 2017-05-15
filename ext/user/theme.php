@@ -9,7 +9,7 @@ class UserPageTheme extends Themelet {
 			"There should be a login box to the left"));
 	}
 
-	public function display_user_list(Page $page, $users, User $user) {
+	public function display_user_list(Page $page, array $users, User $user) {
 		$page->set_title("User List");
 		$page->set_heading("User List");
 		$page->add_block(new NavBlock());
@@ -24,11 +24,11 @@ class UserPageTheme extends Themelet {
 		$page->add_block(new Block("Users", $html));
 	}
 
-	public function display_user_links(Page $page, User $user, $parts) {
+	public function display_user_links(Page $page, User $user, array $parts) {
 		# $page->add_block(new Block("User Links", join(", ", $parts), "main", 10));
 	}
 
-	public function display_user_block(Page $page, User $user, $parts) {
+	public function display_user_block(Page $page, User $user, array $parts) {
 		$h_name = html_escape($user->name);
 		$html = 'Logged in as '.$h_name;
 		foreach($parts as $part) {
@@ -115,7 +115,7 @@ class UserPageTheme extends Themelet {
 	 * @param array $uploads
 	 * @param array $comments
 	 */
-	public function display_ip_list(Page $page, $uploads, $comments) {
+	public function display_ip_list(Page $page, array $uploads, array $comments) {
 		$html = "<table id='ip-history'>";
 		$html .= "<tr><td>Uploaded from: ";
 		$n = 0;
@@ -143,7 +143,7 @@ class UserPageTheme extends Themelet {
 		$page->add_block(new Block("IPs", $html, "main", 70));
 	}
 
-	public function display_user_page(User $duser, $stats) {
+	public function display_user_page(User $duser, array $stats) {
 		global $page, $user;
 		assert(is_array($stats));
 		$stats[] = 'User ID: '.$duser->id;

@@ -4,7 +4,7 @@ class ViewImageTheme extends Themelet {
 	/*
 	 * Build a page showing $image and some info about it
 	 */
-	public function display_page(Image $image, $editor_parts) {
+	public function display_page(Image $image, array $editor_parts) {
 		global $page;
 
 		$h_metatags = str_replace(" ", ", ", html_escape($image->get_tag_list()));
@@ -61,7 +61,7 @@ class ViewImageTheme extends Themelet {
 		return "$h_pin<br>$h_search";
 	}
 
-	protected function build_info(Image $image, $editor_parts) {
+	protected function build_info(Image $image, array $editor_parts) {
 		global $user;
 
 		if(count($editor_parts) == 0) return ($image->is_locked() ? "<br>[Image Locked]" : "");
